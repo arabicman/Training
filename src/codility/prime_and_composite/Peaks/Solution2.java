@@ -1,7 +1,7 @@
 package codility.prime_and_composite.Peaks;
 
 import java.util.*;
-
+// 时间复杂度 : O(N*M)
 public class Solution2 {
     public static int solution(int[] A){
 

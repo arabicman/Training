@@ -1,6 +1,17 @@
 package codility.prime_and_composite.Peaks;
 /*
 *  https://app.codility.com/programmers/lessons/Sol/peaks/
+* 核心代码：   for(int peaksIndex : peaksIndexList){
+                    if( peaksIndex/blockSize == ithOkBlock){ // peak in the ith block
+                        ithOkBlock++; // go to check (i+1)th block
+                    }
+                }
+                if(ithOkBlock == numBlocks){
+                    return numBlocks;
+                }
+*
+*  缺陷分析：(1) 缺乏从高到低排序的思路，可以直接优先找大的，不用Math.max
+*          (2) 检查代码利用Set大大降低了check的效率
 * */
 
 import java.util.HashSet;
