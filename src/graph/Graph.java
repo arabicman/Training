@@ -42,21 +42,21 @@ public class Graph {
         }
     }
 
-    private void validateVertex(int v){ //判断当前定点是否合法
+    public void validateVertex(int v){ //判断当前定点是否合法
         if(v < 0 || v >= V){
             throw new IllegalArgumentException("Vertex"+v+"is invalid");
         }
     }
 
-    private int V(){ //返回V
+    public int V(){ //返回V
         return V;
     }
 
-    private int E(){  //返回E
+    public int E(){  //返回E
         return E;
     }
 
-    private boolean hasEdge(int v ,int w){ //收否存在边
+    public boolean hasEdge(int v ,int w){ //收否存在边
         validateVertex(v);
         validateVertex(w);
         return adj[v].contains(w) || adj[w].contains(v);

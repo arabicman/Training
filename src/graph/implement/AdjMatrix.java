@@ -59,7 +59,7 @@ public class AdjMatrix {
         return adj[v][w] == 1;
     }
 
-    public ArrayList<Integer> adj(int v){ //返回某一顶点的邻边
+    public ArrayList<Integer> adj(int v){ //返回某一顶点的邻边，时间复杂度:O(V)
         validateVertex(v);
         ArrayList<Integer> res = new ArrayList<>();
         for(int i = 0; i < V; i++){
