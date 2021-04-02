@@ -1,0 +1,69 @@
+public String reorganizeString(String S) {
+
+        // count freq of chars
+        int[] cnt = new int[26];
+        for(char ch : S.toCharArray()){
+            cnt[ch - 'a'] += 1;
+        }
+        char[] res = new char[S.length()];
+        Arrays.fill(res, 'X');
+        int index = 0;
+        int maxFreq = getFreqMax(cnt);
+        while(maxFreq != -1){
+            if(index == -1){
+                return "";
+            }
+            char cur = (char)('a' + maxFreq);
+            int remain = cnt[maxFreq];
+            for(int i = index; i < res.length && remain > 0; i += 2){
+                res[i] = cur;
+                remain --;
+            }
+            if(remain > 0){
+                return "";
+            }
+            cnt[maxFreq] = 0;
+            index = nextIdx(res);
+            maxFreq = getFreqMax(cnt);
+        }
+        return new String(res);
+
+    }
+
+    private int getFreqMax(int[] arr){
+        int max = 0;
+        boolean flag = false;
+
+        for(int i = 0; i < arr.length; i++){
+            if(arr[0] != 0){
+                flag = true;
+            }
+            if(arr[i] > arr[max]){
+                max = i;
+                flag = true;
+            }
+        }
+        if(!flag){
+            return -1;
+        }
+        return max;
+    }
+
+
+
+    private int nextIdx(char[] arr){
+        for(int i = 0 ; i < arr.length; i++){
+            if(arr[i] == 'X'){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+//        String s = "tndsewnllhrtwsvxenkscbivijfqnysamckzoyfnapuotmdexzkkrpmppttficzerdndssuveompqkemtbwbodrhwsfpbmkafpwyedpcowruntvymxtyyejqtajkcjakghtdwmuygecjncxzcxezgecrxonnszmqmecgvqqkdagvaaucewelchsmebikscciegzoiamovdojrmmwgbxeygibxxltemfgpogjkhobmhwquizuwvhfaiavsxhiknysdghcawcrphaykyashchyomklvghkyabxatmrkmrfsppfhgrwywtlxebgzmevefcqquvhvgounldxkdzndwybxhtycmlybhaaqvodntsvfhwcuhvuccwcsxelafyzushjhfyklvghpfvknprfouevsxmcuhiiiewcluehpmzrjzffnrptwbuhnyahrbzqvirvmffbxvrmynfcnupnukayjghpusewdwrbkhvjnveuiionefmnfxao";
+        String s = "aaaaabbbbbbcccccddfffeeeeefffff";
+        System.out.println(sol.reorganizeString(s));
+
+    }
